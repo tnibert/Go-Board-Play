@@ -5,9 +5,13 @@ DEVICE = hx1k
 all: $(PROJ).bin
 
 dependencies:
-	pacman -Sy yosys
+	pacman -Sy yosys iverilog
 	# icestorm
 	# nextpnr
+
+simulate:
+	iverilog '-Wall' '-g2012' debounce.v debounce_testbench.v 
+	# && unbuffer vvp a.out
 
 %.bin:
 	# todo: incorporate yosys into Makefile properly
@@ -19,6 +23,6 @@ prog: $(PROJ).bin
 	iceprog $(PROJ).bin
 
 clean:
-	rm -f bitstream.txt $(PROJ).bin design.json
+	rm -f bitstream.txt $(PROJ).bin design.json a.out
 
 .PHONY: all prog clean
