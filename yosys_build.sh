@@ -5,6 +5,8 @@
 
 yosys <<EOF
 read_verilog top.v
+read_verilog led_toggle.v
+read_verilog debounce.v
 synth_ice40
 write_json design.json
 EOF
