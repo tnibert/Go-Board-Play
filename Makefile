@@ -16,7 +16,7 @@ simulate:
 %.bin:
 	# todo: incorporate yosys into Makefile properly
 	./yosys_build.sh
-	nextpnr-ice40 --$(DEVICE) --freq 25 --pcf $(PIN_DEF) --json design.json --package vq100 --asc bitstream.txt
+	nextpnr-ice40 --$(DEVICE) --freq 25 --pcf $(PIN_DEF) --json design.json --package vq100 --asc bitstream.txt --pcf-allow-unconstrained
 	icepack bitstream.txt $(PROJ).bin
 
 prog: $(PROJ).bin
